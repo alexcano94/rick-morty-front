@@ -32,7 +32,7 @@ export type Character = {
 export const Home = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(parseInt(getSessionStorageObject("page")));
+  const [page, setPage] = useState(parseInt(getSessionStorageObject("page")) || 1);
   const [totalPages, setTotalPages] = useState(0);
   const { user } = useAuth();
 
@@ -63,9 +63,9 @@ export const Home = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          characters.map((character) => {
+          characters.map((character, index) => {
             return (
-              <div className={styles.card}>
+              <div key={index} className={styles.card}>
                 <img src={character.image} alt={character.name} />
                 <div className={styles.cardContainer}>
                   <div className={styles.cardHeader}>
