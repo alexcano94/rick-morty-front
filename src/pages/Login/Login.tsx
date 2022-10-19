@@ -5,13 +5,12 @@ import { useAuth } from "../../hooks/Auth";
 import styles from "./styles.module.css";
 
 export type UserLoginData = {
-  username: string;
   email: string;
   password: string;
 };
 
 export const Login = () => {
-  const { signup, user } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,16 +28,16 @@ export const Login = () => {
   const [userData, setUserData] = useState<UserLoginData>({
     email: "",
     password: "",
-    username: "",
   });
 
   const onSubmit: SubmitHandler<UserLoginData> = async (data) => {
     setUserData(data);
-    const errors = await signup(userData.username, userData.email, userData.password);
-    if (errors) {
-      console.log(errors);
-    } else {
+    const errors = await login(data.email, data.password);
+    console.log(errors);
+    if (errors === undefined) {
+      console.log("tiene que navegar");
       navigate("/", { replace: true });
+      navigate(0);
     }
   };
 

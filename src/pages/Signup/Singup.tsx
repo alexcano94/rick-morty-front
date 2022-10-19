@@ -39,10 +39,8 @@ export const Signup = () => {
 
   const onSubmit: SubmitHandler<UserSignupData> = async (data) => {
     setUserData(data);
-    const errors = await signup(userData.username, userData.email, userData.password);
-    if (errors) {
-      console.log(errors);
-    } else {
+    const errors = await signup(data.username, data.email, data.password);
+    if (!errors) {
       navigate("/", { replace: true });
     }
   };
