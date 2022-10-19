@@ -12,6 +12,7 @@ export type UserSignupData = {
 };
 
 export const Signup = () => {
+  document.body.style.overflow = "hidden";
   const { signup, user } = useAuth();
   const navigate = useNavigate();
 

@@ -10,6 +10,7 @@ export type UserLoginData = {
 };
 
 export const Login = () => {
+  document.body.style.overflow = "hidden";
   const { login, user } = useAuth();
   const navigate = useNavigate();
 
